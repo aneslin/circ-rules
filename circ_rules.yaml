@@ -1,0 +1,79 @@
+priority: g , m ,s,t ,c,a,b
+
+fallback-policy: l non-circulating r recall-only n no-notices  o no-overdue   i no-lost-fee
+
+#non-circulating
+t non-circulating : l non-circulating r non-requestable  n no-notices  o no-overdue   i standard-lost-fee
+
+#standard
+t standard-loan: l 4-week-5-renewal  r page-recall n standard-notices o no-overdue i standard-lost-fee 
+    g faculty staff : l 12-month-unlimited r page-recall n standard-notices o no-overdue i standard-lost-fee
+    g graduate : l 6-month-3-renewal r page-recall n standard-notices o no-overdue i standard-lost-fee 
+    g undergraduate : l 3-month-3-renewal r page-recall n standard-notices o no-overdue i standard-lost-fee 
+    g ac-resident hc-resident-alum sc-resident mh-resident um-resident-alum-temp-card um-resident-alum  : l 4-week-5-renewal  r page-recall n standard-notices o no-overdue i standard-lost-fee 
+
+#Audio and video games
+t 4-week: l 4-week-5-renewal r page-recall n standard-notices o no-overdue i standard-lost-fee 
+    m video-game: l 4-week-1-renewal  r page-recall n standard-notices o no-overdue i standard-lost-fee 
+    
+#periodicals
+t 1-week :  l non-circulating  r page-recall n standard-notices o no-overdue i standard-lost-fee
+    g undergraduate graduate faculty staff : l 1-week-2-renewal r page-recall n standard-notices o no-overdue i standard-lost-fee
+        b FC>UM : l 1-week-2-renewal   r recall-only  n standard-notices o no-overdue i standard-lost-fee
+
+#reserve 4 hour
+t reserve-4-hour  : l 4-hour-reserve  r non-requestable  n reserve-notices  o no-overdue  i reserve-lost-fee 
+      g mh-resident um-comm-cat    : l non-circulating r recall-only n no-notices  o no-overdue   i no-lost-fee
+#reserve 4 hour, due at closing
+t reserve-4-hour-due-at-closing: l 4-hour-reserve-due-at-closing  r non-requestable  n reserve-notices  o no-overdue  i reserve-lost-fee
+     g mh-resident um-comm-cat    : l non-circulating r recall-only n no-notices  o no-overdue   i no-lost-fee
+#reserve 1 day
+t reserve-1-day : l 1-day-reserve r non-requestable  n reserve-notices  o no-overdue  i reserve-lost-fee 
+     g mh-resident um-comm-cat    : l non-circulating r recall-only n no-notices  o no-overdue   i no-lost-fee
+
+#reserve 3 day
+t reserve-3-day : l 3-day-reserve r non-requestable  n reserve-notices  o no-overdue  i reserve-lost-fee 
+    g mh-resident um-comm-cat    : l non-circulating r recall-only n no-notices  o no-overdue   i no-lost-fee
+
+#reserve 1 week
+t reserve-1-week : l 1-week-reserve r non-requestable  n reserve-notices  o no-overdue  i reserve-lost-fee 
+    g mh-resident um-comm-cat  : l non-circulating r recall-only n no-notices  o no-overdue   i no-lost-fee
+
+#equipment 1 hour
+t equipment-1-hour : l non-circulating r non-requestable  n no-notices   o no-overdue  i reserve-lost-fee 
+    g undergraduate graduate faculty staff : l 1-hour-equipment r non-requestable  n equipment-notices o no-overdue i hourly-equipment-lost-fee 
+    
+#equipment 4 hour
+t equipment-4-hour : l non-circulating r non-requestable  n no-notices   o no-overdue  i reserve-lost-fee 
+    g undergraduate graduate faculty staff : l 4-hour-equipment  r non-requestable  n equipment-notices o no-overdue i hourly-equipment-lost-fee 
+
+#equipment 4 hour, due at closing
+t equipment-4-hour-due-at-closing   : l non-circulating r non-requestable  n no-notices   o no-overdue  i reserve-lost-fee 
+    g undergraduate graduate faculty staff : l 4-hour-equipment-due-at-closing   r non-requestable  n equipment-notices o no-overdue i hourly-equipment-lost-fee 
+
+#equipment 4 hour, renewable
+t equipment-4-hour-renewable    : l non-circulating r non-requestable  n no-notices   o no-overdue  i reserve-lost-fee 
+    g undergraduate graduate faculty staff : l 4-hour-equipment-1-renewal    r non-requestable  n equipment-notices o no-overdue i hourly-equipment-lost-fee 
+#equipment 1 day
+t equipment-1-day     : l non-circulating r non-requestable  n no-notices   o no-overdue  i reserve-lost-fee 
+    g undergraduate graduate faculty staff : l 1-day-equipment    r non-requestable  n equipment-notices o no-overdue i hourly-equipment-lost-fee 
+       
+#equipment 3 day
+t equipment-3-day    : l non-circulating r non-requestable  n no-notices   o no-overdue  i reserve-lost-fee 
+    g undergraduate graduate faculty staff : l 3-day-equipment    r non-requestable  n equipment-notices o no-overdue i hourly-equipment-lost-fee 
+
+#equipment 1 week
+t equipment-1-week    : l non-circulating r non-requestable  n no-notices   o no-overdue  i reserve-lost-fee 
+    g undergraduate graduate faculty staff : l 1-week-equipment   r non-requestable  n equipment-notices o no-overdue i hourly-equipment-lost-fee 
+    
+#academic year
+t academic-year : l non-circulating r non-requestable  n no-notices   o no-overdue  i no-lost-fee 
+    g faculty staff graduate : l academic-year  r non-requestable n standard-notices o no-overdue i no-lost-fee 
+ #semester, no renewal
+t semester : l non-circulating r non-requestable  n no-notices   o no-overdue  i no-lost-fee 
+     g faculty staff graduate undergraduate : l 1-semester-no-renewal r non-requestable n standard-notices o no-overdue i no-lost-fee 
+     
+#limited
+t limited : l non-circulating r non-requestable  n no-notices   o no-overdue  i no-lost-fee 
+    g faculty graduate staff : l 4-week-5-renewal r recall-only n standard-notices o no-overdue i standard-lost-fee 
+
